@@ -23,7 +23,6 @@ const BikeTable = ({ bikes }: { bikes: Bike[] }) => {
           </div>
           </Tooltip>
           </Table.Td>
-          <Table.Td>{stolen_location}</Table.Td>
           <Table.Td>{thumb && <img className={styles.thumbnail} alt="" src={thumb} />}</Table.Td>
 
         </Table.Tr>
@@ -36,7 +35,6 @@ const BikeTable = ({ bikes }: { bikes: Bike[] }) => {
               <Table.Th>Title</Table.Th>
               <Table.Th>Description</Table.Th>
               <Table.Th>Date of Theft</Table.Th>
-              <Table.Th>Date of Case Reported</Table.Th>
               <Table.Th>Location of Theft</Table.Th>
               <Table.Th></Table.Th>
             </Table.Tr>

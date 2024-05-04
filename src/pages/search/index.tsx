@@ -1,33 +1,56 @@
 import React from 'react';
-import { BikeResponseGetData } from '@/types/types';
+import { BikeCountGetResponse, BikeSearchGetResponse } from '@/types/types';
 import BikesTable from '../components/bikes-table';
 import styles from './index.module.css';
 import useGetBikes from '../hooks/use-get-bikes';
+import useGetBikesCount from '../hooks/use-get-bikes-count';
 
 const Search = () => {
-    const [bikeData, setBikeData] = React.useState<BikeResponseGetData['bikes']>([]);
-    const { data, isLoading, isError } = useGetBikes();
+    const [bikeSearchData, setBikeSearchData] = React.useState<BikeSearchGetResponse['bikes']>([]);
+    const [stolenCount, setStolenCount] = React.useState<BikeCountGetResponse['stolen']>(0);
+    const { searchData, isSearching, isSearchingError } = useGetBikes();
+    const { countData, isCounting, isCountingError } = useGetBikesCount();
 
 React.useEffect(() => {
-    if (data) {
-        setBikeData(data.bikes);
+    if (searchData) {
+        setBikeSearchData(searchData.bikes);
     }
-}, [data]);
+}, [searchData]);
 
-    const getContent = () => {
-        if (isError) {
+React.useEffect(() => {
+    if (countData) {
+        setStolenCount(countData.stolen);
+    }
+}, [countData]);
+
+console.log({ stolenCount });
+
+    const getHeaderContent = () => {
+        if (isCountingError) {
+            return <div>There is an error counting bikes..</div>;
+        }
+
+        if (isCounting) {
+            return <div>Fetching the count data..</div>;
+        }
+        return (
+            <h3>Total thefts: <strong>{stolenCount}</strong></h3>
+        );
+    };
+
+    const getSearchContent = () => {
+        if (isSearchingError) {
             return <div>There is an error..</div>;
         }
 
-        if (isLoading) {
+        if (isSearching) {
             return <div>Fetching the data..</div>;
         }
 
         return (
             <>
-            <h3>Total thefts: <strong>1952</strong></h3>
             <div className={styles.tableContainer}>
-                <BikesTable bikes={bikeData} />
+                <BikesTable bikes={bikeSearchData} />
             </div>
             </>
         );
@@ -35,7 +58,8 @@ React.useEffect(() => {
 
         return (
             <div className={styles.container}>
-                {getContent()}
+                {getHeaderContent()}
+                {getSearchContent()}
             </div>
         );
 };

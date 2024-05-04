@@ -39,10 +39,17 @@ export type Bike = {
 
 };
 
-export type BikeResponseGetData = {
+export type BikeSearchGetResponse = {
     bikes: Bike[]
+};
+
+export type BikeCountGetResponse = {
+    non: number;
+    stolen: number;
+    proximity: number;
 };
 
 export enum QueryKeys {
     Bikes = 'bikes',
+    BikesCount = 'bikesCount'
   }
