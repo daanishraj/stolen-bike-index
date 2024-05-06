@@ -4,8 +4,19 @@ import Api from './Api';
 const searchRoute = '/search';
 const countRoute = '/search/count';
 
-const getBikes = async () : Promise<BikeSearchGetResponse> => {
-    const response = await Api().get(searchRoute);
+export const defaultQueryParams = {
+    page: 1,
+    per_page: 10,
+};
+
+const getBikes = async (params: URLSearchParams) : Promise<BikeSearchGetResponse> => {
+    const queryParams: Record<string, string> = {};
+    for (const [key, value] of params.entries()) {
+        queryParams[key] = value;
+    }
+
+    const updatedParams = { ...defaultQueryParams, ...queryParams };
+    const response = await Api().get(searchRoute, { params: updatedParams });
     return response.data;
 };
 

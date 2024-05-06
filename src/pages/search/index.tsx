@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { Button } from '@mantine/core';
 import { BikeCountGetResponse, BikeSearchGetResponse } from '@/types/types';
 import BikesTable from '../components/bikes-table';
 import styles from './index.module.css';
@@ -7,8 +9,10 @@ import useGetBikesCount from '../hooks/use-get-bikes-count';
 
 const Search = () => {
     const [bikeSearchData, setBikeSearchData] = React.useState<BikeSearchGetResponse['bikes']>([]);
-    const [stolenCount, setStolenCount] = React.useState<BikeCountGetResponse['stolen']>(0);
-    const { searchData, isSearching, isSearchingError } = useGetBikes();
+    const [bikeCountData, setBikeCountData] = React.useState<Partial<BikeCountGetResponse>>({});
+    const [searchParams, setSearchParams] = useSearchParams();
+    const { searchData, isSearching, isSearchingError, refetchSearch } =
+    useGetBikes(searchParams);
     const { countData, isCounting, isCountingError } = useGetBikesCount();
 
 React.useEffect(() => {
@@ -19,14 +23,27 @@ React.useEffect(() => {
 
 React.useEffect(() => {
     if (countData) {
-        setStolenCount(countData.stolen);
+        setBikeCountData({ ...bikeCountData, stolen: countData?.stolen });
     }
 }, [countData]);
 
-console.log({ stolenCount });
+const handleClickMunichOnly = () => {
+    setSearchParams({ ...searchParams, stolenness: 'proximity', location: 'munich' });
+};
 
-    const getHeaderContent = () => {
-        if (isCountingError) {
+const handleClickAll = () => {
+    const updatedSearchParams = new URLSearchParams(searchParams);
+    updatedSearchParams.delete('location');
+    updatedSearchParams.delete('stolenness');
+    setSearchParams(updatedSearchParams);
+};
+
+React.useEffect(() => {
+    refetchSearch();
+  }, [searchParams]);
+
+const getHeaderContent = () => {
+    if (isCountingError) {
             return <div>There is an error counting bikes..</div>;
         }
 
@@ -34,7 +51,7 @@ console.log({ stolenCount });
             return <div>Fetching the count data..</div>;
         }
         return (
-            <h3>Total thefts: <strong>{stolenCount}</strong></h3>
+            <h3>Total thefts: <strong>{bikeCountData.stolen}</strong></h3>
         );
     };
 
@@ -50,6 +67,8 @@ console.log({ stolenCount });
         return (
             <>
             <div className={styles.tableContainer}>
+            <Button onClick={handleClickMunichOnly} color="dark">Stolen in Munich</Button>
+            <Button onClick={handleClickAll} color="dark">Stolen everywhere</Button>
                 <BikesTable bikes={bikeSearchData} />
             </div>
             </>
