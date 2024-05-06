@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Button } from '@mantine/core';
+import { Button, Pagination } from '@mantine/core';
 import { BikeCountGetResponse, BikeSearchGetResponse } from '@/types/types';
 import BikesTable from '../components/bikes-table';
 import styles from './index.module.css';
@@ -10,6 +10,7 @@ import useGetBikesCount from '../hooks/use-get-bikes-count';
 const Search = () => {
     const [bikeSearchData, setBikeSearchData] = React.useState<BikeSearchGetResponse['bikes']>([]);
     const [bikeCountData, setBikeCountData] = React.useState<Partial<BikeCountGetResponse>>({});
+    const [page, setPage] = React.useState(1);
     const [searchParams, setSearchParams] = useSearchParams();
     const { searchData, isSearching, isSearchingError, refetchSearch } =
     useGetBikes(searchParams);
@@ -28,7 +29,10 @@ React.useEffect(() => {
 }, [countData]);
 
 const handleClickMunichOnly = () => {
-    setSearchParams({ ...searchParams, stolenness: 'proximity', location: 'munich' });
+    const updatedSearchParams = new URLSearchParams(searchParams);
+    updatedSearchParams.set('location', 'munich');
+    updatedSearchParams.set('stolenness', 'proximity');
+    setSearchParams(updatedSearchParams);
 };
 
 const handleClickAll = () => {
@@ -41,6 +45,13 @@ const handleClickAll = () => {
 React.useEffect(() => {
     refetchSearch();
   }, [searchParams]);
+
+  const onPageChange = ((pageNum: number) => {
+    const updatedSearchParams = new URLSearchParams(searchParams);
+    updatedSearchParams.set('page', pageNum.toString());
+    setSearchParams(updatedSearchParams);
+    setPage(pageNum);
+  });
 
 const getHeaderContent = () => {
     if (isCountingError) {
@@ -69,16 +80,22 @@ const getHeaderContent = () => {
             <div className={styles.tableContainer}>
             <Button onClick={handleClickMunichOnly} color="dark">Stolen in Munich</Button>
             <Button onClick={handleClickAll} color="dark">Stolen everywhere</Button>
+            {bikeSearchData.length === 0 && (<div> there is no data to display</div>)}
                 <BikesTable bikes={bikeSearchData} />
             </div>
             </>
         );
     };
 
+    const getFooterContent = () => (
+            <Pagination value={page} onChange={onPageChange} total={10} siblings={2} size="sm" />
+          );
+
         return (
             <div className={styles.container}>
                 {getHeaderContent()}
                 {getSearchContent()}
+                {getFooterContent()}
             </div>
         );
 };
