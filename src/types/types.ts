@@ -39,6 +39,39 @@ export type Bike = {
 
 };
 
+export type BikeDetails = {
+    serial: string | null;
+    manufacturer: string | null;
+    title: string;
+    frame_model: string | null;
+    frame_material_slug: string | null;
+    frame_colors: string[] | null;
+    year: number | null;
+    frame_size: string | null; //VERIFY the type
+    registration_created_at: number | null;
+    description: string | null;
+    stolen_coordinates: number[] | null;
+    stolen_record: {
+      date_stolen: number | null;
+      location: string | null;
+      latitude: number | null;
+      longitude: number | null;
+      theft_description: string | null;
+      locking_description: string | null;
+      lock_defeat_description: string | null;
+      police_report_number: string | null;
+      police_report_department: string | null;
+      created_at: number | null;
+      create_open311: boolean | null;
+      id: number | null;
+    } | null;
+
+};
+
+export type BikeDetailsGetResponse = {
+    bike: BikeDetails;
+};
+
 export type BikeSearchGetResponse = {
     bikes: Bike[]
 };
@@ -50,6 +83,7 @@ export type BikeCountGetResponse = {
 };
 
 export enum QueryKeys {
-    Bikes = 'bikes',
-    BikesCount = 'bikesCount'
+    BikeSearch = 'bikeSearch',
+    BikesCount = 'bikesCount',
+    BikeDetails = 'bikeDetails',
   }

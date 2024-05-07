@@ -4,9 +4,15 @@ import styles from './styles.module.css';
 import { getDateFromTimestamp } from '@/helpers';
 
 const BikeTable = ({ bikes }: { bikes: Bike[] }) => {
+  const handleRowClick = (id: number) => {
+    window.open(
+      `/bikes/${id}`,
+      '_blank',
+    );
+  };
     const rows = bikes.map((
       { id, date_stolen, title, description, stolen_location, thumb }: Bike) => (
-        <Table.Tr key={id}>
+        <Table.Tr key={id} onClick={() => handleRowClick(id)} className={styles.onHover}>
           <Table.Td>{title}</Table.Td>
           <Table.Td>
             <Tooltip label={description} offset={{ mainAxis: -50, crossAxis: 50 }} color="gray">

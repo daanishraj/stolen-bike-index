@@ -6,7 +6,7 @@ import { BikeSearchGetResponse, QueryKeys } from '@/types/types';
 const useGetBikes = (searchParams: URLSearchParams) => {
     const { data, isLoading, isError, error, isRefetching, refetch } =
     useQuery<BikeSearchGetResponse, AxiosError>({
-      queryKey: [QueryKeys.Bikes, searchParams],
+      queryKey: [QueryKeys.BikeSearch, searchParams],
       queryFn: () => BikeService.getBikes(searchParams),
     });
 

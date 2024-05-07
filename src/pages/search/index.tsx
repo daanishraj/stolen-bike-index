@@ -3,10 +3,10 @@ import { useSearchParams } from 'react-router-dom';
 import { Button, Pagination, Flex, TextInput, rem } from '@mantine/core';
 import { IconFilter } from '@tabler/icons-react';
 import { BikeCountGetResponse, BikeSearchGetResponse } from '@/types/types';
-import BikesTable from '../components/bikes-table';
+import BikesTable from './components/bikes-table';
 import styles from './index.module.css';
-import useGetBikes from '../hooks/use-get-bikes';
-import useGetBikesCount from '../hooks/use-get-bikes-count';
+import useGetBikes from './hooks/use-get-bikes';
+import useGetBikesCount from './hooks/use-get-bikes-count';
 
 const Search = () => {
     const [bikeSearchData, setBikeSearchData] = React.useState<BikeSearchGetResponse['bikes']>([]);
