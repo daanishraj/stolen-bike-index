@@ -1,16 +1,16 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Button, Pagination, Flex, TextInput, rem } from '@mantine/core';
+import { Button, Pagination, Flex, TextInput, rem, Stack } from '@mantine/core';
 import { IconFilter } from '@tabler/icons-react';
-import { BikeCountGetResponse, BikeSearchGetResponse } from '@/types/types';
+import { TBikeCountGetResponse, TBikeSearchGetResponse } from '@/types/types';
 import BikesTable from './components/bikes-table';
 import styles from './index.module.css';
 import useGetBikes from './hooks/use-get-bikes';
 import useGetBikesCount from './hooks/use-get-bikes-count';
 
 const Search = () => {
-    const [bikeSearchData, setBikeSearchData] = React.useState<BikeSearchGetResponse['bikes']>([]);
-    const [bikeCountData, setBikeCountData] = React.useState<Partial<BikeCountGetResponse>>({});
+    const [bikeSearchData, setBikeSearchData] = React.useState<TBikeSearchGetResponse['bikes']>([]);
+    const [bikeCountData, setBikeCountData] = React.useState<Partial<TBikeCountGetResponse>>({});
     const [page, setPage] = React.useState(1);
     const [filterByTitleText, setFilterByTitleText] = React.useState('');
     const [searchParams, setSearchParams] = useSearchParams();
@@ -116,7 +116,6 @@ const getHeaderContent = () => {
             <Button onClick={handleClickAll} color="dark">Stolen everywhere</Button>
             </Flex>
             <div className={styles.tableContainer}>
-            {bikeSearchData.length === 0 && (<div> there is no data to display</div>)}
                 <BikesTable bikes={bikeSearchData} />
             </div>
             </>
@@ -124,16 +123,16 @@ const getHeaderContent = () => {
     };
 
     const getFooterContent = () => (
-            <Pagination value={page} onChange={onPageChange} total={10} siblings={2} size="sm" />
+            <Pagination mt="xl" className={styles.pagination} value={page} onChange={onPageChange} total={10} siblings={2} size="sm" />
           );
 
         return (
-            <div className={styles.container}>
+            <Stack align="center" className={styles.container}>
                 {getHeaderContent()}
                 {getFiltersContent()}
                 {getTableContent()}
                 {getFooterContent()}
-            </div>
+            </Stack>
         );
 };
 

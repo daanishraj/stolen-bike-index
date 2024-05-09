@@ -1,4 +1,4 @@
-export type FrameColor = 'Black'
+export type TFrameColor = 'Black'
     | 'Blue'
     | 'Brown'
     | 'Green'
@@ -12,10 +12,10 @@ export type FrameColor = 'Black'
     | 'White'
     | 'Yellow or Gold';
 
-export type Bike = {
+export type TBike = {
     date_stolen: number | null;
     description: string | null;
-    frame_colors: FrameColor[] | null;
+    frame_colors: TFrameColor[] | null;
     frame_model: string | null;
     id: number;
     is_stock_img: boolean | null;
@@ -39,13 +39,15 @@ export type Bike = {
 
 };
 
-export type BikeDetails = {
+export type TBikeDetails = {
     serial: string | null;
     manufacturer: string | null;
     title: string;
     frame_model: string | null;
     frame_material_slug: string | null;
     frame_colors: string[] | null;
+    large_img: string | null;
+    thumb: string | null;
     year: number | null;
     frame_size: string | null; //VERIFY the type
     registration_created_at: number | null;
@@ -68,15 +70,15 @@ export type BikeDetails = {
 
 };
 
-export type BikeDetailsGetResponse = {
-    bike: BikeDetails;
+export type TBikeDetailsGetResponse = {
+    bike: TBikeDetails;
 };
 
-export type BikeSearchGetResponse = {
-    bikes: Bike[]
+export type TBikeSearchGetResponse = {
+    bikes: TBike[]
 };
 
-export type BikeCountGetResponse = {
+export type TBikeCountGetResponse = {
     non: number;
     stolen: number;
     proximity: number;

@@ -13,3 +13,13 @@
 .onHover {
     cursor: pointer;
 }
+
+.table {
+    width: 100%;
+    overflow: auto;
+}
+
+.thumbnail {
+    height: 20px;
+    width: 20px;
+}

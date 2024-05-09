@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import BikeService from '@/services/bikes';
-import { BikeSearchGetResponse, QueryKeys } from '@/types/types';
+import { TBikeSearchGetResponse, QueryKeys } from '@/types/types';
 
 const useGetBikes = (searchParams: URLSearchParams) => {
     const { data, isLoading, isError, error, isRefetching, refetch } =
-    useQuery<BikeSearchGetResponse, AxiosError>({
+    useQuery<TBikeSearchGetResponse, AxiosError>({
       queryKey: [QueryKeys.BikeSearch, searchParams],
       queryFn: () => BikeService.getBikes(searchParams),
     });

@@ -1,17 +1,18 @@
 import { Table, Tooltip } from '@mantine/core';
-import { Bike } from '@/types/types';
+import { TBike } from '@/types/types';
 import styles from './styles.module.css';
 import { getDateFromTimestamp } from '@/helpers';
 
-const BikeTable = ({ bikes }: { bikes: Bike[] }) => {
+const BikeTable = ({ bikes }: { bikes: TBike[] }) => {
   const handleRowClick = (id: number) => {
     window.open(
       `/bikes/${id}`,
       '_blank',
     );
   };
+
     const rows = bikes.map((
-      { id, date_stolen, title, description, stolen_location, thumb }: Bike) => (
+      { id, date_stolen, title, description, stolen_location, thumb }: TBike) => (
         <Table.Tr key={id} onClick={() => handleRowClick(id)} className={styles.onHover}>
           <Table.Td>{title}</Table.Td>
           <Table.Td>
@@ -29,13 +30,13 @@ const BikeTable = ({ bikes }: { bikes: Bike[] }) => {
           </div>
           </Tooltip>
           </Table.Td>
-          <Table.Td>{thumb && <img className={styles.thumbnail} alt="" src={thumb} />}</Table.Td>
+          <Table.Td className={styles.thumbnail}>{thumb && <img className={styles.thumbnail} alt="" src={thumb} />}</Table.Td>
 
         </Table.Tr>
       ));
 
       return (
-        <Table striped highlightOnHover>
+        <Table className={styles.table} striped highlightOnHover withTableBorder>
           <Table.Thead>
             <Table.Tr>
               <Table.Th>Title</Table.Th>

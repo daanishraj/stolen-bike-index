@@ -1,0 +1,71 @@
+body {
+    height: 100vh;
+    width:100vw;
+    margin:0;
+    padding:0;
+}
+
+body > div {
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    height: 100vh;
+    width: 100vw;
+    
+}
+
+.image {
+    width: 40%;
+    height: auto;
+}
+
+.textContainer {
+    display: inline
+}
+
+.content {
+    flex: 0 50%
+}
+
+.identifiers,
+.details {
+
+    > div {
+        margin-top: 0.5rem;
+    }
+
+    div > p {
+        display: inline;
+    }
+
+    div > p:first-child {
+        font-weight: 900;
+    }
+
+    div > p:nth-child(2) {
+        font-style: italic;
+        margin-left: 1rem;
+    }
+}
+
+.identifiers > div {
+    margin-top: 0.5rem;
+}
+
+
+.identifiers { 
+    height: 70%;
+}
+
+.details > div {
+    margin-top: 1rem;
+}
+
+
+.stack {
+    margin-left: 3rem;
+    flex: 1;
+    max-width: 40%;
+}

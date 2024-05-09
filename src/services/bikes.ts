@@ -1,4 +1,4 @@
-import { BikeCountGetResponse, BikeSearchGetResponse } from '@/types/types';
+import { TBikeCountGetResponse, TBikeSearchGetResponse } from '@/types/types';
 import Api from './Api';
 
 const searchRoute = '/search';
@@ -10,7 +10,7 @@ export const defaultQueryParams = {
     per_page: 10,
 };
 
-const getBikes = async (params: URLSearchParams) : Promise<BikeSearchGetResponse> => {
+const getBikes = async (params: URLSearchParams) : Promise<TBikeSearchGetResponse> => {
     const queryParams: Record<string, string> = {};
     for (const [key, value] of params.entries()) {
         queryParams[key] = value;
@@ -21,7 +21,7 @@ const getBikes = async (params: URLSearchParams) : Promise<BikeSearchGetResponse
     return response.data;
 };
 
-const getBikeCount = async () : Promise<BikeCountGetResponse> => {
+const getBikeCount = async () : Promise<TBikeCountGetResponse> => {
     const response = await Api().get(countRoute);
     return response.data;
 };

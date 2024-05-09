@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import BikeService from '@/services/bikes';
-import { BikeDetailsGetResponse, QueryKeys } from '@/types/types';
+import { TBikeDetailsGetResponse, QueryKeys } from '@/types/types';
 
 const useGetBikeDetails = (id: number) => {
     const { data, isLoading, isError, error, isRefetching, refetch } =
-    useQuery<BikeDetailsGetResponse, AxiosError>({
+    useQuery<TBikeDetailsGetResponse, AxiosError>({
       queryKey: [QueryKeys.BikeDetails, id],
       queryFn: () => BikeService.getBikeDetails(id),
     });
