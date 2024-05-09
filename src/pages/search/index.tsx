@@ -7,6 +7,7 @@ import BikesTable from './components/bikes-table';
 import styles from './index.module.css';
 import useGetBikes from './hooks/use-get-bikes';
 import useGetBikesCount from './hooks/use-get-bikes-count';
+import TableLoadingState from './components/loading-state';
 
 const Search = () => {
     const [bikeSearchData, setBikeSearchData] = React.useState<TBikeSearchGetResponse['bikes']>([]);
@@ -106,7 +107,7 @@ const getHeaderContent = () => {
         }
 
         if (isSearching || isRefetchingSearch) {
-            return <div>Fetching the data..</div>;
+            return (<TableLoadingState />);
         }
 
         return (
