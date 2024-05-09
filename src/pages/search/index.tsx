@@ -8,6 +8,7 @@ import styles from './index.module.css';
 import useGetBikes from './hooks/use-get-bikes';
 import useGetBikesCount from './hooks/use-get-bikes-count';
 import TableLoadingState from './components/loading-state';
+import EmptyState from './components/empty-state';
 
 const Search = () => {
     const [bikeSearchData, setBikeSearchData] = React.useState<TBikeSearchGetResponse['bikes']>([]);
@@ -89,8 +90,8 @@ const getHeaderContent = () => {
         );
     };
 
-    const getFiltersContent = () => (
-        <Flex>
+    const getFiltersContent = () => bikeSearchData.length > 0 ? (
+         <Flex>
             <TextInput
               placeholder="search by text.."
               onChange={(event) => onFilterByTitle(event?.currentTarget.value)}
@@ -98,8 +99,8 @@ const getHeaderContent = () => {
               radius="lg"
           />
             <Button onClick={onFilter} color="dark"><IconFilter style={{ width: rem(14), height: rem(14) }} /></Button>
-        </Flex>
-        );
+         </Flex>
+        ) : null;
 
     const getTableContent = () => {
         if (isSearchingError) {
@@ -108,6 +109,10 @@ const getHeaderContent = () => {
 
         if (isSearching || isRefetchingSearch) {
             return (<TableLoadingState />);
+        }
+
+        if (bikeSearchData.length === 0) {
+            return (<EmptyState />);
         }
 
         return (
