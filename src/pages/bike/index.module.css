@@ -1,4 +1,4 @@
-body {
+/* body {
     height: 100vh;
     width:100vw;
     margin:0;
@@ -8,7 +8,7 @@ body {
 body > div {
     height: 100vh;
     width: 100vw;
-}
+} */
 
 .container {
     height: 100vh;

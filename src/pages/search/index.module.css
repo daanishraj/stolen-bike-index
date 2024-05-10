@@ -3,16 +3,24 @@
     margin: 0;
     padding: 0;
     /* overflow: hidden; */
-
 }
 
 .tableContainer {
     width: 80%;
-    
 }
 
-div[data-portal="true"] {
+.filter > button, filter > input {
+    flex:1
+}
+
+.datePicker, .searchFilter {
+    width: 15rem;
+}
+
+
+
+/* div[data-portal="true"] {
     display: none;
-  }
+  } */
 
  

@@ -83,7 +83,7 @@ const BikeDetails = () => {
 
             <Card className={classnames(styles.card, styles.details)} shadow="lg" radius="md" padding="lg">
             <div>
-              <Text>description </Text>
+              <Text>description: </Text>
               <Text>{description || MISSING_DETAILS}</Text>
             </div>
             <div>
