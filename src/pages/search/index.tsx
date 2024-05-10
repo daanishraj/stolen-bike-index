@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Button, Pagination, Flex, TextInput, rem, Stack } from '@mantine/core';
+import { Button, Pagination, Flex, TextInput, rem, Stack, Pill } from '@mantine/core';
 import { IconCalendar, IconFilter } from '@tabler/icons-react';
 import { DatePickerInput, DatesRangeValue } from '@mantine/dates';
 import { TBikeCountGetResponse, TBikeSearchGetResponse } from '@/types/types';
@@ -25,7 +25,7 @@ const Search = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const { searchData, isSearching, isSearchingError, isRefetchingSearch, refetchSearch } =
     useGetBikes(searchParams);
-    const { countData, isCounting, isCountingError } = useGetBikesCount();
+    const { countData } = useGetBikesCount();
 
 React.useEffect(() => {
     if (searchData) {
@@ -107,23 +107,14 @@ const onFilter = () => {
     setPage(pageNum);
   });
 
-const getHeaderContent = () => {
-    if (isCountingError) {
-            return <div>There is an error counting bikes..</div>;
-        }
-
-        if (isCounting) {
-            return <div>Fetching the count data..</div>;
-        }
-        return (
-            <h3>Total thefts: <strong>{bikeCountData.stolen}</strong></h3>
-        );
-    };
-
     const getFiltersContent = () => bikeSearchData.length > 0 ? (
          <Flex className={styles.filters} justify="center" columnGap="xl">
             <Button onClick={handleClickMunichOnly} color="dark" radius="lg">Stolen in Munich</Button>
-            <Button onClick={handleClickAll} color="dark" radius="lg">Stolen everywhere</Button>
+            <Button onClick={handleClickAll} color="dark" radius="lg">
+                Stolen everywhere
+                <Pill ml="md" color="dark" size="xs">{bikeCountData.stolen}</Pill>
+            </Button>
+
             <TextInput
               placeholder="search by text.."
               onChange={(event) => onFilterByTitle(event?.currentTarget.value)}
@@ -145,7 +136,6 @@ const getHeaderContent = () => {
               className={styles.datePicker}
             />
             <Button onClick={onFilter} color="dark"><IconFilter style={{ width: rem(14), height: rem(14) }} /></Button>
-
          </Flex>
         ) : null;
 
@@ -179,8 +169,7 @@ const getHeaderContent = () => {
           );
 
         return (
-            <Stack align="center" className={styles.container}>
-                {getHeaderContent()}
+            <Stack align="center" justify="center" className={styles.container}>
                 {getFiltersContent()}
                 {getTableContent()}
                 {getFooterContent()}
