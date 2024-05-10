@@ -21,8 +21,18 @@ const getBikes = async (params: URLSearchParams) : Promise<TBikeSearchGetRespons
     return response.data;
 };
 
-const getBikeCount = async () : Promise<TBikeCountGetResponse> => {
+const getBikeCount = async (): Promise<TBikeCountGetResponse> => {
     const response = await Api().get(countRoute);
+    return response.data;
+};
+
+const getMunichBikeCount = async (): Promise<TBikeCountGetResponse> => {
+    const queryParams = {
+        stolenness: 'proximity',
+        location: 'Munich',
+        distance: '40',
+    };
+    const response = await Api().get(countRoute, { params: queryParams });
     return response.data;
 };
 
@@ -35,6 +45,7 @@ const BikeService = {
     getBikes,
     getBikeCount,
     getBikeDetails,
+    getMunichBikeCount,
 };
 
 export default BikeService;

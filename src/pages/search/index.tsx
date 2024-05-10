@@ -11,10 +11,12 @@ import useGetBikesCount from './hooks/use-get-bikes-count';
 import TableLoadingState from './components/loading-state';
 import EmptyState from './components/empty-state';
 import { getDateToday, getStringFromDate } from '@/helpers';
+import BikeService from '@/services/bikes';
 
 const Search = () => {
     const [bikeSearchData, setBikeSearchData] = React.useState<TBikeSearchGetResponse['bikes']>([]);
     const [bikeCountData, setBikeCountData] = React.useState<Partial<TBikeCountGetResponse>>({});
+    const [munichBikeCountData, setMunichBikeCountData] = React.useState<number | null>(null);
     const [page, setPage] = React.useState(1);
     const [filterByTitleText, setFilterByTitleText] = React.useState('');
     const [filterByDateRange, setFilterByDateRange] =
@@ -38,6 +40,19 @@ React.useEffect(() => {
         setBikeCountData({ ...bikeCountData, stolen: countData?.stolen });
     }
 }, [countData]);
+
+React.useEffect(() => {
+    const getStoleCountForMunich = async () => {
+        try {
+            const response = await BikeService.getMunichBikeCount();
+            setMunichBikeCountData(response.proximity);
+        } catch (error) {
+            console.log({ error });
+        }
+    };
+
+    getStoleCountForMunich();
+}, []);
 
 React.useEffect(() => {
     refetchSearch();
@@ -109,7 +124,9 @@ const onFilter = () => {
 
     const getFiltersContent = () => bikeSearchData.length > 0 ? (
          <Flex className={styles.filters} justify="center" columnGap="xl">
-            <Button onClick={handleClickMunichOnly} color="dark" radius="lg">Stolen in Munich</Button>
+            <Button onClick={handleClickMunichOnly} color="dark" radius="lg">Stolen in Munich
+            <Pill ml="md" color="dark" size="xs">{munichBikeCountData}</Pill>
+            </Button>
             <Button onClick={handleClickAll} color="dark" radius="lg">
                 Stolen everywhere
                 <Pill ml="md" color="dark" size="xs">{bikeCountData.stolen}</Pill>
