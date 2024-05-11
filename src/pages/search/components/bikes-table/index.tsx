@@ -16,15 +16,18 @@ const BikeTable = ({ bikes }: { bikes: TBike[] }) => {
         <Table.Tr key={id} onClick={() => handleRowClick(id)} className={styles.onHover}>
           <Table.Td>{title}</Table.Td>
           <Table.Td>
-            <Tooltip label={description} offset={{ mainAxis: -50, crossAxis: 50 }} color="gray">
-          <div className={styles.truncate}>
-            {description}
-          </div>
+            <Tooltip
+              className={styles.tooltip}
+              label={description}
+              offset={{ mainAxis: -50, crossAxis: 50 }}>
+              <div className={styles.truncate}>
+                {description}
+              </div>
             </Tooltip>
           </Table.Td>
           <Table.Td>{getDateFromTimestamp(date_stolen)}</Table.Td>
           <Table.Td>
-          <Tooltip label={stolen_location} offset={{ mainAxis: -50, crossAxis: 50 }} color="gray">
+          <Tooltip className={styles.tooltip} label={stolen_location} offset={{ mainAxis: -50, crossAxis: 50 }} color="gray">
           <div className={styles.truncate}>
             {stolen_location}
           </div>
@@ -36,7 +39,7 @@ const BikeTable = ({ bikes }: { bikes: TBike[] }) => {
       ));
 
       return (
-        <Table className={styles.table} striped highlightOnHover withTableBorder>
+        <Table className={styles.table} striped stripedColor="aliceblue" highlightOnHover highlightOnHoverColor="azure" withTableBorder>
           <Table.Thead>
             <Table.Tr>
               <Table.Th>Title</Table.Th>

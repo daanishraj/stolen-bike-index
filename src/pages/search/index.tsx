@@ -124,12 +124,12 @@ const onFilter = () => {
 
     const getFiltersContent = () => bikeSearchData.length > 0 ? (
          <Flex className={styles.filters} justify="center" columnGap="xl">
-            <Button onClick={handleClickMunichOnly} color="dark" radius="lg">Stolen in Munich
-            <Pill ml="md" color="dark" size="xs">{munichBikeCountData}</Pill>
+            <Button onClick={handleClickMunichOnly} radius="lg">Stolen in Munich
+            <Pill className={styles.pill} ml="md" color="dark" size="xs">{munichBikeCountData}</Pill>
             </Button>
-            <Button onClick={handleClickAll} color="dark" radius="lg">
+            <Button onClick={handleClickAll} radius="lg">
                 Stolen everywhere
-                <Pill ml="md" color="dark" size="xs">{bikeCountData.stolen}</Pill>
+                <Pill className={styles.pill} ml="md" size="xs">{bikeCountData.stolen}</Pill>
             </Button>
 
             <TextInput
@@ -152,7 +152,9 @@ const onFilter = () => {
               maxDate={getDateToday()}
               className={styles.datePicker}
             />
-            <Button onClick={onFilter} color="dark"><IconFilter style={{ width: rem(14), height: rem(14) }} /></Button>
+            <Button onClick={onFilter}>
+                <IconFilter style={{ width: rem(14), height: rem(14) }} />
+            </Button>
          </Flex>
         ) : null;
 
@@ -182,7 +184,7 @@ const onFilter = () => {
     };
 
     const getFooterContent = () => (
-            <Pagination mt="xl" className={styles.pagination} value={page} onChange={onPageChange} total={10} siblings={2} size="sm" />
+            <Pagination mt="xl" color="steelblue" value={page} onChange={onPageChange} total={10} siblings={2} size="sm" />
           );
 
         return (

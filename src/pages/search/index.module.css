@@ -2,7 +2,6 @@
     height: 80vh;
     margin: 0;
     padding: 0;
-    /* overflow: hidden; */
 }
 
 .tableContainer {
@@ -14,12 +13,17 @@
 }
 
 .datePicker, .searchFilter {
-    width: 15rem;
+    width: 18rem;
 }
 
+.filters > button {
+    background-color: steelblue;
+    
+}
 
-/* div[data-portal="true"] {
-    display: none;
-  } */
+.pill {
+    background-color: orangered;
+    color: white;
+}
 
  
