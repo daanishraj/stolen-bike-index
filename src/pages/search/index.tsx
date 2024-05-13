@@ -12,6 +12,7 @@ import TableLoadingState from './components/loading-state';
 import EmptyState from './components/empty-state';
 import { getDateToday, getStringFromDate } from '@/helpers';
 import BikeService from '@/services/bikes';
+import ErrorState from './components/error-state';
 
 const Search = () => {
     const [bikeSearchData, setBikeSearchData] = React.useState<TBikeSearchGetResponse['bikes']>([]);
@@ -25,8 +26,8 @@ const Search = () => {
     <IconCalendar style={{ width: rem(18), height: rem(18) }} stroke={1.5} />;
 
     const [searchParams, setSearchParams] = useSearchParams();
-    const { searchData, isSearching, isSearchingError, isRefetchingSearch, refetchSearch } =
-    useGetBikes(searchParams);
+    const { searchData, isSearching, isSearchingError, searchError,
+        isRefetchingSearch, refetchSearch } = useGetBikes(searchParams);
     const { countData } = useGetBikesCount();
 
 React.useEffect(() => {
@@ -160,7 +161,7 @@ const onFilter = () => {
 
     const getTableContent = () => {
         if (isSearchingError) {
-            return <div>There is an error..</div>;
+            return (<ErrorState message={searchError?.message} refetch={refetchSearch} />);
         }
 
         if (isSearching || isRefetchingSearch) {

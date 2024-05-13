@@ -6,7 +6,7 @@ const EmptyState = () => (
     <>
     <Image
       src={emptyStateImage}
-      alt="empty"
+      alt="no data"
       className={styles.image} />
       <Title order={3}> Oops! No bikes to be found.</Title>
     </>
