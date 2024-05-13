@@ -1,14 +1,4 @@
-/* body {
-    height: 100vh;
-    width:100vw;
-    margin:0;
-    padding:0;
-}
 
-body > div {
-    height: 100vh;
-    width: 100vw;
-} */
 
 .container {
     height: 100vh;
@@ -31,7 +21,6 @@ body > div {
 
 .identifiers,
 .details {
-
     > div {
         margin-top: 0.5rem;
     }

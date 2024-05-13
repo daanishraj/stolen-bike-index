@@ -3,13 +3,10 @@ import emptyStateImage from '../../../../images/empty-state-image.jpg';
 import styles from './styles.module.css';
 
 const EmptyState = () => (
-    <>
-    <Image
-      src={emptyStateImage}
-      alt="no data"
-      className={styles.image} />
-      <Title order={3}> Oops! No bikes to be found.</Title>
-    </>
-  );
+  <>
+    <Image src={emptyStateImage} alt="no data" className={styles.image} />
+    <Title order={3}> Oops! No bikes to be found.</Title>
+  </>
+);
 
-  export default EmptyState;
+export default EmptyState;
