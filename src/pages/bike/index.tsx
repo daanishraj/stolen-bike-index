@@ -6,6 +6,7 @@ import useGetBikeDetails from './hooks/use-get-bike-details';
 import styles from './index.module.css';
 import { TBikeDetails } from '@/types/types';
 import { getDateFromTimestamp } from '@/helpers';
+import bikeImage from '../../images/bike-image.jpg';
 
 const MISSING_DETAILS = 'the details are missing';
 
@@ -97,7 +98,7 @@ const BikeDetails = () => {
             </Card>
             </Stack>
             <Image
-              fallbackSrc="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/images/bg-8.png"
+              fallbackSrc={bikeImage}
               {...(bikeData.large_img ? { src: bikeData.large_img } : {})}
               alt="Norway"
               className={styles.image} />
