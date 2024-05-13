@@ -1,12 +1,11 @@
-# Mantine Vite template
+# Stolen bike index
+The app has been bootstrapped with a template provided by the ui library Mantine which uses vite. All ui components are from this library. Data has been fetched from the [Bikeindex Api](https://bikeindex.org/documentation/api_v3)
 
 ## Features
 
 This template comes with the following features:
 
-- [PostCSS](https://postcss.org/) with [mantine-postcss-preset](https://mantine.dev/styles/postcss-preset)
 - [TypeScript](https://www.typescriptlang.org/)
-- [Storybook](https://storybook.js.org/)
 - [Vitest](https://vitest.dev/) setup with [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
 - ESLint setup with [eslint-config-mantine](https://github.com/mantinedev/eslint-config-mantine)
 
@@ -29,6 +28,11 @@ This template comes with the following features:
 
 ### Other scripts
 
-- `storybook` – starts storybook dev server
-- `storybook:build` – build production storybook bundle to `storybook-static`
 - `prettier:write` – formats all files with Prettier
+
+### Attribution
+The empty state image comes from https://www.freepik.com/free-vector/no-data-concept-illustration_5928293.htm#query=empty%20state&position=1&from_view=keyword&track=ais&uuid=d137c789-0df6-450e-8836-f7d4ce71ccf5
+The error state image comes from https://www.freepik.com/free-vector/computer-troubleshooting-concept-illustration_20064239.htm#fromView=search&page=1&position=30&uuid=402ef165-e665-4728-9c42-409d7b84d578
+
+### Deployment
+The app has been deployed using AWS Amplify. Check it out [here](https://master.d1bl0z5sqszs92.amplifyapp.com/) ! :) 
