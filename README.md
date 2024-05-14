@@ -31,8 +31,10 @@ This template comes with the following features:
 - `prettier:write` – formats all files with Prettier
 
 ### Attribution
-The empty state image comes from https://www.freepik.com/free-vector/no-data-concept-illustration_5928293.htm#query=empty%20state&position=1&from_view=keyword&track=ais&uuid=d137c789-0df6-450e-8836-f7d4ce71ccf5
-The error state image comes from https://www.freepik.com/free-vector/computer-troubleshooting-concept-illustration_20064239.htm#fromView=search&page=1&position=30&uuid=402ef165-e665-4728-9c42-409d7b84d578
+- The empty state image comes from https://www.freepik.com/free-vector/no-data-concept-illustration_5928293.htm#query=empty%20state&position=1&from_view=keyword&track=ais&uuid=d137c789-0df6-450e-8836-f7d4ce71ccf5
+- The error state image comes from https://www.freepik.com/free-vector/computer-troubleshooting-concept-illustration_20064239.htm#fromView=search&page=1&position=30&uuid=402ef165-e665-4728-9c42-409d7b84d578
+- The header bike image comes from https://www.freepik.com/free-vector/blue-bicycle-race_137410665.htm#fromView=search&page=1&position=49&uuid=d2e5ab2e-d1e2-444a-b336-fa8dd4b5b14a
+
 
 ### Deployment
 The app has been deployed using AWS Amplify. Check it out [here](https://master.d1bl0z5sqszs92.amplifyapp.com/) ! :) 

@@ -14,6 +14,7 @@ import { getDateToday, getStringFromDate } from '@/helpers';
 import BikeService from '@/services/bikes';
 import ErrorState from './components/error-state';
 import { PROXIMITY_FROM_MUNICH } from '@/constants';
+import Header from '@/components/header';
 
 const Search = () => {
   const [bikeSearchData, setBikeSearchData] = React.useState<TBikeSearchGetResponse['bikes']>([]);
@@ -211,11 +212,14 @@ const Search = () => {
   );
 
   return (
-    <Stack align="center" justify="center" className={styles.container}>
-      {getFiltersContent()}
-      {getTableContent()}
-      {getFooterContent()}
-    </Stack>
+    <>
+      <Header />
+      <Stack align="center" justify="center" className={styles.container}>
+        {getFiltersContent()}
+        {getTableContent()}
+        {getFooterContent()}
+      </Stack>
+    </>
   );
 };
 
