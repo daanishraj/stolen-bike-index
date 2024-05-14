@@ -65,6 +65,10 @@ const Search = () => {
   }, []);
 
   React.useEffect(() => {
+    if (searchParams.has('page')) {
+      const currentPage = searchParams.get('page');
+      setPage(Number(currentPage));
+    }
     refetchSearch();
   }, [searchParams]);
 
