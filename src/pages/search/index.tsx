@@ -13,6 +13,7 @@ import EmptyState from './components/empty-state';
 import { getDateToday, getStringFromDate } from '@/helpers';
 import BikeService from '@/services/bikes';
 import ErrorState from './components/error-state';
+import { PROXIMITY_FROM_MUNICH } from '@/constants';
 
 const Search = () => {
   const [bikeSearchData, setBikeSearchData] = React.useState<TBikeSearchGetResponse['bikes']>([]);
@@ -70,6 +71,7 @@ const Search = () => {
     const updatedSearchParams = new URLSearchParams(searchParams);
     updatedSearchParams.set('location', 'munich');
     updatedSearchParams.set('stolenness', 'proximity');
+    updatedSearchParams.set('distance', PROXIMITY_FROM_MUNICH);
     setSearchParams(updatedSearchParams);
   };
 
@@ -77,6 +79,7 @@ const Search = () => {
     const updatedSearchParams = new URLSearchParams(searchParams);
     updatedSearchParams.delete('location');
     updatedSearchParams.delete('stolenness');
+    updatedSearchParams.delete('distance');
     setSearchParams(updatedSearchParams);
   };
 

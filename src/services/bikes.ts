@@ -1,5 +1,6 @@
 import { TBikeCountGetResponse, TBikeSearchGetResponse } from '@/types/types';
 import Api from './Api';
+import { PROXIMITY_FROM_MUNICH } from '@/constants';
 
 const searchRoute = '/search';
 const countRoute = '/search/count';
@@ -30,7 +31,7 @@ const getMunichBikeCount = async (): Promise<TBikeCountGetResponse> => {
   const queryParams = {
     stolenness: 'proximity',
     location: 'Munich',
-    distance: '40',
+    distance: PROXIMITY_FROM_MUNICH,
   };
   const response = await Api().get(countRoute, { params: queryParams });
   return response.data;

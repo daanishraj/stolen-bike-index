@@ -7,8 +7,7 @@ import styles from './index.module.css';
 import { TBikeDetails } from '@/types/types';
 import { getDateFromTimestamp } from '@/helpers';
 import bikeImage from '../../images/bike-image.jpg';
-
-const MISSING_DETAILS = 'the details are missing';
+import { MISSING_DETAILS } from '@/constants';
 
 const BikeDetails = () => {
   const { id } = useParams();
